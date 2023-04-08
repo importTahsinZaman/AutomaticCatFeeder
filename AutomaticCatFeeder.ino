@@ -5,7 +5,7 @@
 
 Servo servo;
 const int SERVO_PIN = 9;
-unsigned long TIME_BETWEEN_MEALS = 30 * second;
+unsigned long TIME_BETWEEN_MEALS = 30 * minute;
 const int CLOSED_POSITION = 20;
 const int OPEN_POSITION = 78;
 const int FEEDING_TIME = 1000; //How long the feeder stays open
@@ -192,7 +192,7 @@ void setup ()
 void loop ()
 {
   //FEED EVERY *TIME_BETWEEN_MEALS* HOURS
-  if (millis() - lastFeeding > minute) {
+  if (millis() - lastFeeding > TIME_BETWEEN_MEALS) {
     lastFeeding = millis();
     play_song();
     feed();
@@ -201,13 +201,13 @@ void loop ()
   delay(10);
 
   //  BUTTON FOR MANUAL FEEDING
-  buttonNew = digitalRead(buttonPin);
-  if (buttonOld == 0 && buttonNew == 1) {
-    play_song();
-    feed();
-  }
-  buttonOld = buttonNew;
-  delay(100);
+//  buttonNew = digitalRead(buttonPin);
+//  if (buttonOld == 0 && buttonNew == 1) {
+//    play_song();
+//    feed();
+//  }
+//  buttonOld = buttonNew;
+//  delay(100);
 }
 
 void close_feeder() {
